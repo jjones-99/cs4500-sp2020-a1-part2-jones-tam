@@ -9,7 +9,7 @@
  * An Map represents an array of key/value pairs.
  */
 class Map : public Object {
- public:
+public:
   /**
    * Constructs a new Map.
    */
@@ -44,6 +44,15 @@ class Map : public Object {
   }
 
   /**
+   * Remove the key/value pair at given key from the map and return the removed
+   * value, or nullptr if the key was not in the map.
+   */
+  Object* remove(Object* key) {
+    // TODO: Method stub.
+    return 0;
+  }
+
+  /**
    * Returns true if key is already in the map.
    */
   bool contains_key(Object* key) {
@@ -66,7 +75,7 @@ class Map : public Object {
  * Represents a map with only strings as the key and value.
  */
 class StrToStrMap : public Map {
- public:
+public:
   /**
    * Constructs a new StrToStrMap.
    */
@@ -93,6 +102,15 @@ class StrToStrMap : public Map {
   }
 
   /**
+   * Remove the key/value pair at given key from the map and return the removed
+   * value, or nullptr if the key was not in the map.
+   */
+  String* remove(String* key) {
+    // TODO: Method stub.
+    return 0;
+  }
+
+  /**
    * Returns true if key is already in the map.
    */
   bool contains_key(String* key) {
@@ -110,3 +128,4 @@ class StrToStrMap : public Map {
     return 0;
   }
 };
+
