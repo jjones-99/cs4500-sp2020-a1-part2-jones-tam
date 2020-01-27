@@ -7,6 +7,8 @@
 
 /**
  * An Map represents an array of key/value pairs.
+ *
+ * The Map does not take ownership over any of the key and value Objects.
  */
 class Map : public Object {
  public:
@@ -14,6 +16,13 @@ class Map : public Object {
    * Constructs a new Map.
    */
   Map() {
+    // TODO: Method stub.
+  }
+
+  /**
+   * Destructs a Map.
+   */
+  ~Map() {
     // TODO: Method stub.
   }
 

@@ -18,4 +18,4 @@ The String class is just the usual. It has a `const` `char` array representing i
 
 #### The Map class.
 
-Because we don't have any way of using generics or similar strategies in CwC, the Map class simply keeps track of Objects. This provides functionality of a map, probably through the Object class' `hash()` and `equals()` methods, using Objects as both keys and values.
+Because we don't have any way of using generics or similar strategies in CwC, the Map class simply keeps track of Objects. This provides functionality of a map, probably through the Object class' `hash()` and `equals()` methods, using Objects as both keys and values. This Map class does not take ownership over any of the Objects added to it as keys or values.

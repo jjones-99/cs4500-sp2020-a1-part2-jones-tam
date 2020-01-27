@@ -11,12 +11,17 @@ void test1() {
   String* s = new String("hello");
   String* t = new String("world");
   String* u = new String("hello");
+
   assert(s->equals(s));
   assert(!s->equals(t));
   assert(s->equals(u));
   assert(s->hash() == s->hash());
   assert(!s->hash() == t->hash());
   assert(s->hash() == u->hash());
+
+  delete s;
+  delete t;
+  delete u;
 }
 
 // tests for Map from String to String [get, put, contains_key, len]
@@ -26,6 +31,7 @@ void test2() {
   String* v = new String("value");
   String* u = new String("unused");
   String* k2 = new String("second key");
+
   assert(smap->size() == 0);         // initial length of map is zero
   assert(smap->put(k, v) == 0);      // add one key/value pair return 0
   assert(smap->contains_key(k));     // contains key added
@@ -40,6 +46,12 @@ void test2() {
       smap->put(k, u)->equals(v));  // replace first value, return first value
   assert(smap->get(k)->equals(v));  // new value now exists at first key
   assert(!smap->get(k)->equals(v));
+
+  delete smap;
+  delete k;
+  delete v;
+  delete u;
+  delete k2;
 }
 
 // tests for Map from String to String [put_all]
@@ -56,6 +68,13 @@ void test3() {
   a->put(ak, n);               // replaces value in a
   assert(b->put_all(a)->equals(
       c));  // put_all of updated a into b returns map with same pair as c
+
+  delete a;
+  delete b;
+  delete c;
+  delete ak;
+  delete av;
+  delete n;
 }
 
 // tests for Map from String to Object [get, put, contains_key, len]
@@ -79,6 +98,13 @@ void test4() {
   assert(
       smap->put(s, o2)->equals(o1));  // replace first value, return first value
   assert(smap->get(s)->equals(o2));   // new value now exists at first key
+
+  delete smap;
+  delete s;
+  delete t;
+  delete u;
+  delete o1;
+  delete o2;
 }
 
 // tests for Map from String to Object [put_all]
@@ -95,6 +121,13 @@ void test5() {
   a->put(k, o2);               // replaces value in a
   assert(b->put_all(a)->equals(
       c));  // put_all of updated a into b returns map with same pair as c
+
+  delete a;
+  delete b;
+  delete c;
+  delete k;
+  delete o1;
+  delete o2;
 }
 
 // tests for Map from Object to Object [get, put, contains_key, len]
@@ -117,6 +150,12 @@ void test6() {
   assert(smap->put(o1, o3)->equals(
       o2));                           // replace first value, return first value
   assert(smap->get(o1)->equals(o3));  // new value now exists at first key
+
+  delete smap;
+  delete o1;
+  delete o2;
+  delete o3;
+  delete o4;
 }
 
 // tests for Map from Object to Object [put_all]
@@ -133,6 +172,13 @@ void test7() {
   a->put(o1, o3);              // replaces value in a
   assert(b->put_all(a)->equals(
       c));  // put_all of updated a into b returns map with same pair as c
+
+  delete a;
+  delete b;
+  delete c;
+  delete o1;
+  delete o2;
+  delete o3;
 }
 
 int main() {
