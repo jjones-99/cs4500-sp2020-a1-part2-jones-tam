@@ -97,11 +97,51 @@ void test5() {
       c));  // put_all of updated a into b returns map with same pair as c
 }
 
+// tests for Map from Object to Object [get, put, contains_key, len]
+void test6() {
+  Map* smap = new Map();
+  Object* o1 = new Object();
+  Object* o2 = new Object();
+  Object* o3 = new Object();
+  Object* o4 = new Object();
+  assert(smap->size() == 0);          // initial length of map is zero
+  assert(smap->put(o1, o2) == 0);     // add one key/value pair return 0
+  assert(smap->contains_key(o1));     // contains key added
+  assert(!smap->contains_key(o2));    // does not contain a non-added key
+  assert(smap->get(o1)->equals(o2));  // key returns matching value
+  assert(smap->size() == 1);          // length is now 1
+  assert(smap->put(o3, o4) == 0);     // add a second pair
+  assert(smap->contains_key(o3));     // second key is in map
+  assert(smap->get(o3)->equals(o4));  // get second value
+  assert(smap->size() == 2);          // length is now 2
+  assert(smap->put(o1, o3)->equals(
+      o2));                           // replace first value, return first value
+  assert(smap->get(o1)->equals(o3));  // new value now exists at first key
+}
+
+// tests for Map from Object to Object [put_all]
+void test7() {
+  Map* a = new Map();
+  Map* b = new Map();
+  Map* c = new Map();
+  Object* o1 = new Object();
+  Object* o2 = new Object();
+  Object* o3 = new Object();
+  a->put(o1, o2);              // puts key/val pair into a
+  c->put(o1, o2);              // puts same key/val pair into c
+  assert(b->put_all(a) == 0);  // put_all of a into b returns 0
+  a->put(o1, o3);              // replaces value in a
+  assert(b->put_all(a)->equals(
+      c));  // put_all of updated a into b returns map with same pair as c
+}
+
 int main() {
   test1();
   test2();
   test3();
   test4();
   test5();
+  test6();
+  test7();
   return 0;
 }
