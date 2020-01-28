@@ -16,7 +16,7 @@ void test1() {
   assert(!s->equals(t));
   assert(s->equals(u));
   assert(s->hash() == s->hash());
-  assert(!s->hash() == t->hash());
+  assert(!(s->hash() == t->hash()));
   assert(s->hash() == u->hash());
 
   delete s;
@@ -44,7 +44,7 @@ void test2() {
   assert(smap->size() == 2);         // length is now 2
   assert(
       smap->put(k, u)->equals(v));  // replace first value, return first value
-  assert(smap->get(k)->equals(v));  // new value now exists at first key
+  assert(smap->get(k)->equals(u));  // new value now exists at first key
   assert(!smap->get(k)->equals(v));
 
   delete smap;
