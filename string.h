@@ -1,34 +1,56 @@
-// lang::CwC
+//lang::CwC
+/**
+ * Standardized spec for String for use in CS4500 from Chase Bishop.
+ *
+ * @author spec designed by github.com/chasebish
+ */
 
 #pragma once
+
+#include <stdlib.h>
+#include <string.h>
+#include <stdio.h>
 
 #include "object.h"
 
 /**
- * A String represents a string of characters
+ * An immutable String class representing a char*
  */
 class String : public Object {
- public:
-  /**
-   * Constructs a new String.
-   */
-  String(const char* c) {
-    // TODO: Method stub.
-  }
+public:
+    /** CONSTRUCTORS & DESTRUCTORS **/
 
-  /**
-   * Returns the characters.
-   */
-  const char* get() {
-    // TODO: Method stub.
-    return 0;
-  }
+    /* Creates a String copying s */
+    String(const char *s);
 
-  /**
-   * Returns the length of the string.
-   */
-  int len() {
-    // TODO: Method stub.
-    return 0;
-  }
+    /* Copies a String copying the value from s */
+    String(String *const s);
+
+    /* Clears String from memory */
+    ~String();
+
+
+    /** INHERITED METHODS **/
+
+    /* Inherited from Object, generates a hash for a String */
+    size_t hash();
+
+    /* Inherited from Object, checks equality between an String and an Object */
+    bool equals(Object *const obj);
+
+
+    /** STRING METHODS **/
+
+    /** Compares strings based on alphabetical order
+     * < 0 -> this String is less than String s
+     * = 0 -> this String is equal to String s
+     * > 0 -> this String is greater than String s
+     */
+    int cmp(String *const s);
+
+    /* Creates a new String by combining two existing Strings */
+    String *concat(String *const s);
+
+    /* Returns the current length of the String */
+    size_t size();
 };

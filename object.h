@@ -1,39 +1,33 @@
-// lang::CwC
+//lang::CwC
+/**
+ * Standardized spec for Object for use in CS4500 from Chase Bishop.
+ *
+ * @author spec designed by github.com/chasebish
+ */
 
 #pragma once
 
+#include <stdlib.h>
+
 /**
- * An Object is a basic type. Serves as the root class.
+ * A class that represents the top of the object hierarchy.
  */
 class Object {
- public:
-  /**
-   * Constructs a new Object.
-   */
-  Object() {
-    // TODO: Method stub.
-  }
+public:
+    /** CONSTRUCTORS & DESTRUCTORS **/
 
-  /**
-   * Prints the Object.
-   */
-  virtual void print() {
-    // TODO: Method stub.
-  }
+    /* Default Object constructor */
+    Object();
 
-  /**
-   * Returns whether given Object is equal to this Object.
-   */
-  virtual bool equals(Object* o) {
-    // TODO: Method stub.
-    return false;
-  }
+    /* Default Object destructor, to be overriden by subclasses */
+    virtual ~Object();
 
-  /**
-   * Returns the hashcode for this Object.
-   */
-  virtual long hash() {
-    // TODO: Method stub.
-    return 0;
-  }
+
+    /** VIRTUAL METHODS **/
+
+    /* Returns whether two objects are equal, to be overriden by subclasses */
+    virtual bool equals(Object *const obj);
+
+    /* Returns an object's hash value. Identical objects should have identical hashes */
+    virtual size_t hash();
 };
