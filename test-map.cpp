@@ -1,10 +1,9 @@
 // lang::CwC
 
-#include <assert.h>
-
 #include "map.h"
 #include "object.h"
 #include "string.h"
+#include<assert.h>
 
 // tests for strings [equal and hash]
 void test1() {
@@ -24,9 +23,9 @@ void test1() {
   delete u;
 }
 
-// tests for Map from String to String [get, put, contains_key, len]
+// tests for StrToStrMap [get, put, contains_key, len]
 void test2() {
-  Map* smap = new Map();
+  StrToStrMap* smap = new StrToStrMap();
   String* k = new String("key");
   String* v = new String("value");
   String* u = new String("unused");
@@ -54,11 +53,11 @@ void test2() {
   delete k2;
 }
 
-// tests for Map from String to String [put_all]
+// tests for StrToStrMap put_all
 void test3() {
-  Map* a = new Map();
-  Map* b = new Map();
-  Map* c = new Map();
+  StrToStrMap* a = new StrToStrMap();
+  StrToStrMap* b = new StrToStrMap();
+  StrToStrMap* c = new StrToStrMap();
   String* ak = new String("a key");
   String* av = new String("a value");
   String* n = new String("new value");
@@ -77,7 +76,7 @@ void test3() {
   delete n;
 }
 
-// tests for Map from String to Object [get, put, contains_key, len]
+// tests for Map [get, put, contains_key, len]
 void test4() {
   Map* smap = new Map();
   String* s = new String("key");
@@ -95,8 +94,7 @@ void test4() {
   assert(smap->contains_key(t));     // second key is in map
   assert(smap->get(t)->equals(o2));  // get second value
   assert(smap->size() == 2);         // length is now 2
-  assert(
-      smap->put(s, o2)->equals(o1));  // replace first value, return first value
+  assert(smap->put(s, o2)->equals(o1));  // replace first value, return first value
   assert(smap->get(s)->equals(o2));   // new value now exists at first key
 
   delete smap;
@@ -107,7 +105,7 @@ void test4() {
   delete o2;
 }
 
-// tests for Map from String to Object [put_all]
+// tests for Map put_all
 void test5() {
   Map* a = new Map();
   Map* b = new Map();

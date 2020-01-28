@@ -11,7 +11,7 @@
  * The Map does not take ownership over any of the key and value Objects.
  */
 class Map : public Object {
- public:
+public:
   /**
    * Constructs a new Map.
    */
@@ -79,3 +79,62 @@ class Map : public Object {
     return 0;
   }
 };
+
+/**
+ * Represents a map with only strings as the key and value.
+ */
+class StrToStrMap : public Map {
+public:
+  /**
+   * Constructs a new StrToStrMap.
+   */
+  StrToStrMap() {
+    // TODO: Method stub.
+  }
+
+  /**
+   * Returns value at given key.
+   */
+  String* get(String* key) {
+    // TODO: Method stub.
+    return 0;
+  }
+
+  /**
+   * Puts key/value pair in the map and returns null pointer if the key didn't
+   * previously exist. If the key already exists, replaces the previous value
+   * with the given and returns the replaced value.
+   */
+  String* put(String* key, String* value) {
+    // TODO: Method stub.
+    return 0;
+  }
+
+  /**
+   * Remove the key/value pair at given key from the map and return the removed
+   * value, or nullptr if the key was not in the map.
+   */
+  String* remove(String* key) {
+    // TODO: Method stub.
+    return 0;
+  }
+
+  /**
+   * Returns true if key is already in the map.
+   */
+  bool contains_key(String* key) {
+    // TODO: Method stub.
+    return false;
+  }
+
+  /**
+   * Puts all from other into this. If any keys are replaced, returns those
+   * key/value pairs in a new Map. If no keys are replaced, returns a null
+   * pointer.
+   */
+  StrToStrMap* put_all(StrToStrMap* other) {
+    // TODO: Method stub.
+    return 0;
+  }
+};
+
