@@ -78,6 +78,24 @@ public:
         // TODO: Method stub.
         return 0;
     }
+    
+    /**
+     * Returns true if the given Object is a Map equal to this Map.
+     * Two Maps are equal if they have all of the same keys
+     * and all of the same mappings to values.
+     */
+    virtual bool equals(Object *const obj) {
+        // TODO: Method stub.
+        return false;
+    }
+    
+    /**
+     * Returns this Map's hash value.
+     */
+    virtual size_t hash() {
+        // TODO: Method stub
+        return 0;
+    }
 };
 
 /**
