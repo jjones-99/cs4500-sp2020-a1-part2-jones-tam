@@ -15,7 +15,7 @@ void OUT(const char *msg) { printf("%s\n", msg); }
 #define t_false(a) ASSERT_EQ((a), false);
 #define t_exit(a) ASSERT_EXIT(a(), ::testing::ExitedWithCode(0), ".*");
 
-// tests for Map from Object to Object [get, put, contains_key, len]
+// tests for Map from Object to Object [get, put, contains_key, size, remove]
 void testObjToObjMap1() {
   OUT("Starting testObjToObjMap1()...");
 
@@ -37,6 +37,9 @@ void testObjToObjMap1() {
   t_true(
       smap->put(o1, o3)->equals(o2)); // replace first value, return first value
   t_true(smap->get(o1)->equals(o3));  // new value now exists at first key
+  t_true(smap->remove(o1)->equals(o3)); // remove returns the value at the key
+  t_true(smap->size() == 1); // and decreases the size by 1 (if the key was in the map)
+  t_true(smap->remove(o1) == nullptr); // and returns nullptr for keys not in the map 
 
   delete smap;
   delete o1;
@@ -135,7 +138,7 @@ void testStrToObjMap2() {
   OUT("...passed.");
 }
 
-// tests for StrToStrMap [get, put, contains_key, len]
+// tests for StrToStrMap [get, put, contains_key, size, remove]
 void testStrToStrMap1() {
   OUT("Starting testStrToStrMap1()...");
 
@@ -158,6 +161,9 @@ void testStrToStrMap1() {
   t_true(smap->put(k, u)->equals(v)); // replace first value, return first value
   t_true(smap->get(k)->equals(u));    // new value now exists at first key
   t_false(smap->get(k)->equals(v));
+  t_true(smap->remove(k)->equals(u)); // remove returns the value at the key
+  t_true(smap->size() == 1); // and decreases the size by 1 (if the value was in the map)
+  t_true(smap->remove(k) == nullptr); // and returns nullptr for keys not in the map 
 
   delete smap;
   delete k;
