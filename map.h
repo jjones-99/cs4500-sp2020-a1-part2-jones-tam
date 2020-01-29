@@ -84,7 +84,7 @@ public:
      * Two Maps are equal if they have all of the same keys
      * and all of the same mappings to values.
      */
-    virtual bool equals(Object *const obj) {
+    bool equals(Object *const obj) {
         // TODO: Method stub.
         return false;
     }
@@ -92,7 +92,7 @@ public:
     /**
      * Returns this Map's hash value.
      */
-    virtual size_t hash() {
+    size_t hash() {
         // TODO: Method stub
         return 0;
     }
