@@ -21,22 +21,34 @@ public:
     /** CONSTRUCTORS & DESTRUCTORS **/
 
     /* Creates a String copying s */
-    String(const char *s);
+    String(const char *s) {
+        // TODO: Method stub
+    }
 
     /* Copies a String copying the value from s */
-    String(String *const s);
+    String(String *const s) {
+        // TODO: Method stub
+    }
 
     /* Clears String from memory */
-    ~String();
+    ~String() {
+        // TODO: Method stub
+    }
 
 
     /** INHERITED METHODS **/
 
     /* Inherited from Object, generates a hash for a String */
-    size_t hash();
+    size_t hash() {
+        // TODO: Method stub
+        return 0;
+    }
 
     /* Inherited from Object, checks equality between an String and an Object */
-    bool equals(Object *const obj);
+    bool equals(Object *const obj) {
+        // TODO: Method stub
+        return false;
+    }
 
 
     /** STRING METHODS **/
@@ -46,11 +58,20 @@ public:
      * = 0 -> this String is equal to String s
      * > 0 -> this String is greater than String s
      */
-    int cmp(String *const s);
+    int cmp(String *const s) {
+        // TODO: Method stub
+        return 0;
+    }
 
     /* Creates a new String by combining two existing Strings */
-    String *concat(String *const s);
+    String *concat(String *const s) {
+        // TODO: Method stub
+        return nullptr;
+    }
 
     /* Returns the current length of the String */
-    size_t size();
+    size_t size() {
+        // TODO: Method stub
+        return 0;
+    }
 };

@@ -27,3 +27,19 @@ _This provides the functionality of a String->Object Map._
 The StrtoStrMap class inherits from Map class, and represents a map where both keys and values are Strings. Because we create new methods of the same names (e.g., StrtoStrMap has `String* get(String* key)` and Map has `Object* get(Object* key)`), Map's implementations are hidden from StrtoStrMap. This means we'll be able to use similar method names with the types we'd expect, though it does mean we can't use dynamic dispatch on these methods. These methods probably just delegate to Map's methods, but - because of the invariant that all keys and values are put as Strings - can cast values to Strings before returning them.
 
 _This provides the functionality of a String->String Map._
+
+---
+
+# To Run Tests.
+
+To download Google Test and create a Makefile, run:
+
+```cmake .```
+
+Then run:
+
+```make```
+
+That will create an executable titled `mapTests`. Run it with:
+
+```./mapTests```
