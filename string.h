@@ -74,4 +74,10 @@ public:
         // TODO: Method stub
         return 0;
     }
+
+    /* Returns the character array representation of this String */
+    char* get() {
+        // TODO: Method stub
+        return nullptr;
+    }
 };
