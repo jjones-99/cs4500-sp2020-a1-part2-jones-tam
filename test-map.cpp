@@ -14,12 +14,10 @@ void OUT(const char *msg) { printf("%s\n", msg); }
 
 #define t_true(a) ASSERT_EQ((a), true);
 #define t_false(a) ASSERT_EQ((a), false);
-#define t_exit(a) ASSERT_EXIT(a(), ::testing::ExitedWithCode(0), ".*");
+#define t_exit_zero(a) ASSERT_EXIT(a(), ::testing::ExitedWithCode(0), ".*");
 
 // tests for Map from Object to Object [get, put, contains_key, size, remove]
 void testObjToObjMap1() {
-  OUT("Starting testObjToObjMap1()...");
-
   Map *smap = new Map();
   Object *o1 = new Object();
   Object *o2 = new Object();
@@ -36,11 +34,11 @@ void testObjToObjMap1() {
   t_true(smap->get(o3)->equals(o4)); // get second value
   t_true(smap->size() == 2);         // length is now 2
   t_true(
-      smap->put(o1, o3)->equals(o2)); // replace first value, return first value
+          smap->put(o1, o3)->equals(o2)); // replace first value, return first value
   t_true(smap->get(o1)->equals(o3));  // new value now exists at first key
   t_true(smap->remove(o1)->equals(o3)); // remove returns the value at the key
   t_true(smap->size() == 1); // and decreases the size by 1 (if the key was in the map)
-  t_true(smap->remove(o1) == nullptr); // and returns nullptr for keys not in the map 
+  t_true(smap->remove(o1) == nullptr); // and returns nullptr for keys not in the map
 
   delete smap;
   delete o1;
@@ -48,16 +46,18 @@ void testObjToObjMap1() {
   delete o3;
   delete o4;
 
-  OUT("...passed.");
+  exit(0);
 }
+
+TEST(Map, testObjToObjMap1
+) {
+t_exit_zero(testObjToObjMap1) }
 
 // tests for Map from Object to Object [put_all]
 void testObjToObjMap2() {
-  OUT("Starting testObjToObjMap2()...");
-
-  Map *a = new Map();
-  Map *b = new Map();
-  Map *c = new Map();
+  Map * a = new Map();
+  Map * b = new Map();
+  Map * c = new Map();
   Object *o1 = new Object();
   Object *o2 = new Object();
   Object *o3 = new Object();
@@ -66,7 +66,7 @@ void testObjToObjMap2() {
   t_true(b->put_all(a) == 0); // put_all of a into b returns 0
   a->put(o1, o3);             // replaces value in a
   t_true(b->put_all(a)->equals(
-      c)); // put_all of updated a into b returns map with same pair as c
+          c)); // put_all of updated a into b returns map with same pair as c
 
   delete a;
   delete b;
@@ -75,14 +75,16 @@ void testObjToObjMap2() {
   delete o2;
   delete o3;
 
-  OUT("...passed.");
+  exit(0);
 }
+
+TEST(Map, testObjToObjMap2
+) {
+t_exit_zero(testObjToObjMap2) }
 
 // tests for Map from String to Object [get, put, contains_key, len]
 void testStrToObjMap1() {
-  OUT("Starting testStrToObjMap1()...");
-
-  Map *smap = new Map();
+  Map * smap = new Map();
   String *s = new String("key");
   String *t = new String("another key");
   String *u = new String("yet another one");
@@ -99,7 +101,7 @@ void testStrToObjMap1() {
   t_true(smap->get(t)->equals(o2)); // get second value
   t_true(smap->size() == 2);        // length is now 2
   t_true(
-      smap->put(s, o2)->equals(o1)); // replace first value, return first value
+          smap->put(s, o2)->equals(o1)); // replace first value, return first value
   t_true(smap->get(s)->equals(o2));  // new value now exists at first key
 
   delete smap;
@@ -109,16 +111,18 @@ void testStrToObjMap1() {
   delete o1;
   delete o2;
 
-  OUT("...passed.");
+  exit(0);
 }
+
+TEST(Map, testStrToObjMap1
+) {
+t_exit_zero(testStrToObjMap1) }
 
 // tests for Map from String to Object [put_all]
 void testStrToObjMap2() {
-  OUT("Starting testStrToObjMap2()...");
-
-  Map *a = new Map();
-  Map *b = new Map();
-  Map *c = new Map();
+  Map * a = new Map();
+  Map * b = new Map();
+  Map * c = new Map();
   String *k = new String("a key");
   Object *o1 = new Object();
   Object *o2 = new Object();
@@ -127,7 +131,7 @@ void testStrToObjMap2() {
   t_true(b->put_all(a) == 0); // put_all of a into b returns 0
   a->put(k, o2);              // replaces value in a
   t_true(b->put_all(a)->equals(
-      c)); // put_all of updated a into b returns map with same pair as c
+          c)); // put_all of updated a into b returns map with same pair as c
 
   delete a;
   delete b;
@@ -136,13 +140,15 @@ void testStrToObjMap2() {
   delete o1;
   delete o2;
 
-  OUT("...passed.");
+  exit(0);
 }
+
+TEST(Map, testStrToObjMap2
+) {
+t_exit_zero(testStrToObjMap2) }
 
 // tests for StrToStrMap [get, put, contains_key, size, remove]
 void testStrToStrMap1() {
-  OUT("Starting testStrToStrMap1()...");
-
   StrToStrMap *smap = new StrToStrMap();
   String *k = new String("key");
   String *v = new String("value");
@@ -164,7 +170,7 @@ void testStrToStrMap1() {
   t_false(smap->get(k)->equals(v));
   t_true(smap->remove(k)->equals(u)); // remove returns the value at the key
   t_true(smap->size() == 1); // and decreases the size by 1 (if the value was in the map)
-  t_true(smap->remove(k) == nullptr); // and returns nullptr for keys not in the map 
+  t_true(smap->remove(k) == nullptr); // and returns nullptr for keys not in the map
 
   delete smap;
   delete k;
@@ -172,13 +178,15 @@ void testStrToStrMap1() {
   delete u;
   delete k2;
 
-  OUT("...passed.");
+  exit(0);
 }
+
+TEST(Map, testStrToStrMap1
+) {
+t_exit_zero(testStrToStrMap1) }
 
 // tests for StrToStrMap put_all
 void testStrToStrMap2() {
-  OUT("Starting testStrToStrMap2()...");
-
   StrToStrMap *a = new StrToStrMap();
   StrToStrMap *b = new StrToStrMap();
   StrToStrMap *c = new StrToStrMap();
@@ -190,7 +198,7 @@ void testStrToStrMap2() {
   t_true(b->put_all(a) == 0); // put_all of a into b returns 0
   a->put(ak, n);              // replaces value in a
   t_true(b->put_all(a)->equals(
-      c)); // put_all of updated a into b returns map with same pair as c
+          c)); // put_all of updated a into b returns map with same pair as c
 
   delete a;
   delete b;
@@ -199,11 +207,14 @@ void testStrToStrMap2() {
   delete av;
   delete n;
 
-  OUT("...passed.");
+  exit(0);
 }
 
+TEST(Map, testStrToStrMap2
+) {
+t_exit_zero(testStrToStrMap2) }
+
 void testExtraLargeMap() {
-  OUT("Starting testExtraLargeMap()...");
   // setup
   int count = 4096;
   String ***entries = new String **[count];
@@ -252,21 +263,14 @@ void testExtraLargeMap() {
   }
   delete[] entries;
 
-  OUT("...done.");
+  exit(0);
 }
 
-int main() {
-  OUT("Beginning tests!");
+TEST(Map, testExtraLargeMap
+) {
+t_exit_zero(testExtraLargeMap) }
 
-  testObjToObjMap1();
-  testObjToObjMap2();
-  testStrToObjMap1();
-  testStrToObjMap2();
-  testStrToStrMap1();
-  testStrToStrMap2();
-  testExtraLargeMap();
-
-  OUT("Passed all tests! :)");
-
-  return 0;
+int main(int argc, char **argv) {
+  testing::InitGoogleTest(&argc, argv);
+  return RUN_ALL_TESTS();
 }
