@@ -1,6 +1,7 @@
 // lang::CwC
 
 #include <gtest/gtest.h>
+#include <math.h>
 #include <stdio.h>
 
 #include "map.h"
@@ -201,6 +202,59 @@ void testStrToStrMap2() {
   OUT("...passed.");
 }
 
+void testExtraLargeMap() {
+  OUT("Starting testExtraLargeMap()...");
+  // setup
+  int count = 4096;
+  String ***entries = new String **[count];
+
+  char key[64];
+  char value[64];
+  for (int i = 0; i < count; i++) {
+    // creates null terminated string
+    sprintf(key, "a long key string %d", i);
+    sprintf(value, "value %d", i);
+    entries[i] = new String *[2];
+
+    // assumes the String constructor makes a copy
+    entries[i][0] = new String(key);
+    entries[i][1] = new String(value);
+  }
+
+  // start inserting into Map (seperate just to make test clearer)
+  StrToStrMap *m = new StrToStrMap();
+  for (int i = 0; i < count; i++) {
+    String *k = entries[i][0];
+    String *v = entries[i][1];
+    m->put(k, v);
+  }
+
+  // ensure all keys are now contained
+  for (int i = 0; i < count; i++) {
+    String *k = entries[i][0];
+    t_true(m->contains_key(k));
+  }
+
+  // try 20 random entries, ensure get back inserted value
+  for (int i = 0; i < 20; i++) {
+    int r = rand() % count;
+    String *k = entries[r][0];
+    String *v = entries[r][1];
+    t_true(m->get(k) == v);
+    t_true(m->get(k)->equals(v));
+  }
+
+  // cleanup memory just in case since we allocated a lot
+  for (int i = 0; i < count; i++) {
+    delete entries[i][0];
+    delete entries[i][1];
+    delete[] entries[i];
+  }
+  delete[] entries;
+
+  OUT("...done.");
+}
+
 int main() {
   OUT("Beginning tests!");
 
@@ -210,6 +264,7 @@ int main() {
   testStrToObjMap2();
   testStrToStrMap1();
   testStrToStrMap2();
+  testExtraLargeMap();
 
   OUT("Passed all tests! :)");
 
